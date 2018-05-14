@@ -86,8 +86,8 @@ parameter_bounds = tuple(parameter_bounds)
 # values of the state variable for which we have experiment data
 def model_function_lsq(params, expt_time, expt_pSyk, expt_pGRB2, return_type, debug=False):
     if debug:
-        #print('Parameters:')
-        #print(params)
+        print('Parameters:')
+        print(params)
     simulation.resetParameters()   
     for n, v in enumerate(params):
         constants[parameter_names[n]] = v
