@@ -27,12 +27,12 @@ class Simulation(object):
             v = self.constants[c];
             bounds.append([v/scale, v*scale])
         # define our sensitivity analysis problem
-        problem = {
+        self.problem = {
                    'num_vars': len(self.constants),
                    'names': self.constants.keys(),
                    'bounds': bounds
                    }
-        self.samples = saltelli.sample(problem, 10)
+        self.samples = saltelli.sample(self.problem, 3)
 
     def run_once(self, c, v):
         self.simulation.resetParameters()
@@ -61,16 +61,20 @@ class Simulation(object):
         
         
     def test_run(self):
-        #Y = np.zeros([self.samples.shape[0]])
-        Y = []
+        Y = np.zeros([self.samples.shape[0],len(times)])
+        #print(Y)
+        #exit
+        #Y = np.array()
         for i, X in enumerate(self.samples):
-            Y.append(self.evaluate_model(X))
+            np.append(Y, self.evaluate_model(X), axis=1)
+            print(Y)
             #Y[i] = self.evaluate_model(X)
             
 #         variation = OrderedDict()
 #         for c in self.model_constants.keys():
 #             variation[c] = self.run(c)
 #         return variation
+        return Y
 
     def test(self, c, v):
         trial = self.run_once(c, s*v)[1][times]
@@ -80,7 +84,8 @@ s = Simulation()
 
 v = s.test_run()
 
-print({ k: d for k, d in v.items() if d > 0.001 })
+#print({ k: d for k, d in v.items() if d > 0.001 })
+Si = sobol.analyze(s.problem, v, print_to_console=True)
 
 
 '''

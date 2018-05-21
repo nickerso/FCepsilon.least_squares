@@ -52,7 +52,8 @@
         <variable initial_value="1" name="V_7" units="uM_per_s"/>
         <variable initial_value="1" name="K_7" units="uM"/>
         <variable initial_value="100" name="Lyn" units="uM"/>
-        <variable initial_value="6.39" name="Grb2" units="uM"/>
+        <variable initial_value="Grb2_init" name="Grb2" units="uM"/>
+        <variable initial_value="6.39" name="Grb2_init" units="uM"/>
         <!--Estimation end-->
         <variable initial_value="0.93" name="k_f3" units="per_s"/>
         <variable initial_value="0.112" name="k_f4" units="per_uM_per_s"/>
